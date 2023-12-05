@@ -1,0 +1,50 @@
+ 
+SLUTPROJEKT - PLANERING  
+Albin Åslund 
+NTI-GYMNASIET 2023-10-18 
+1 INNEHÅLL  
+ 
+2 INLEDNING  
+Betygsmål: B
+2.1 KORT BESKRIVNING AV PROJEKTET  
+En top-down shooter där man är en anka som blir svärmade av andra onda ankor
+2.2 MÅLGRUPP  
+Min målgrupp är alla som är intresserade av top-down shooters eller som bara vill slå ihjäl lite tid på fritiden. Det kommer finnas en guide i början av spelet som förklarar hur man gör och hur allt funkar så att alla har möjlighet att förstå vad man ska göra. Spelet kommer att riktas mot en yngre åldersgrupp eftersom det är mestadels unga som spelar sådana spel. 
+3 INGÅENDE BESKRIVNING AV PROJEKTET  
+3.1 BESKRIVNING  
+Spelet går ut på att överleva så länge som möjligt. Spelaren är en anka som inte är omtyckt av andra ankor. Spelaren kommer få ett primitivt skjutvapen som man kan uppgradera under spelets gång. Det finns två saker man kan uppgradera på vapnet. Hastigheten man kan skjuta och hur mycket skada varje skott gör. Man kommer även kunna uppgradera spelarens liv, rörelsehastighet, skada och eldhastighet. 
+
+Till en början kommer det att finnas få fiender som skapas runt om spelaren, men med tiden så kommer det bli fler och fler. Fienderna kommer med tiden kunna göra mer skada och få mer liv. I slutet av spelet kommer det även finnas muterade fiender som kan ha en väldigt hög eller låg stat. Exempel är en väldigt snabb fiende. 
+
+Spelarens uppgradering kommer att kunna väljas i en meny och alla uppgraderingar kommer kosta pengar. Man får pengar för varje fiende man dödar och uppgraderingarna kommer bli exponentiellt dyrare. 
+
+3.2 VAD SOM BEHÖVER GÖRAS  
+3.2.1 HTML och CSS  
+Nästan all kod kommer att skrivas i javascript så därför kommer det inte krävas så mycket HTML och CSS. HTML filen kommer endast att ladda in alla scriptfiler och skapa en canvas. Canvas är den grafikmotor jag kommer använda mig av för att skapa projektet. I CSS kommer endast canvasen att centreras och fylla skärmen.
+3.2.2 JavaScript  
+Skripten delas upp i olika filer efter klasser. Det kommer finnas ett "main"-skript som kör spelloopen och ansvarar för alla processer. De andra skriptfilerna innehåller olika klasser, exempel är spelare, fiende och solida block. Spelarklassen kommer skapa en spelare som kommer vara en anka (png). Klassen kommer ha parametrar för liv och rörelsehastighet som kommer kunna gå att uppdateras. Rörelsehastigheten är direkt bunden till uppdateringsfunktionen i spelarklassen. Uppdateringsfunktionen kommer att ansvara för alla uppdateringar till spelaren. Vid ett försök att flytta spelaren kommer funktionen att kallas, kolla om spelaren kolliderar med något och sedan förflytta spelaren i riktningen med rörelsehastigheten som hastighet. 
+Spelaren kommer inte att få en acceleration vid försök till att flytta sig, den kommer istället för en konstant hastighet (rörelsehastighet) eftersom att precis movement inte är nödvändigt för denna applikation. Kollisionen sker genom att först kolla vilket objekt man kolliderar med, exempelvis fiende eller vägg. Sedan kollas om x eller y koordinaterna är innanför det andra objektet. Spelarens kollision kommer att hanteras av spelarens updatefunktion och fiendens kollision kommer hanteras av fiendens update funktion. Vid kollision med vägg kommer objektets position fästas vid närmsta vägg av väggen. Detta gäller inte för skott eftersom att de kommer förstöras vid kollision. 
+Fienderna och spelaren kommer ha en health bar som består av två rektanglar (grön och röd) som överlappar varandra. Spelaren kommer kunna få tillbaka sina förlorade liv en stund efter att den tagit skada. När en fiende dör så kommer man att få pengar. Med hjälp av pengarna så kan man köpa uppgraderingar till spelaren. Alla nivåer av uppgraderingar kommer att kosta lika mycket, nivå 1 5kr, nivå 2 10 kr osv. Uppgraderingen kommer bli exponentiellt dyrare med tiden. 
+När den interna spel klockan passerat en viss tid så kommer fienderna få en chans att mutera något av sina stats, hastighet, skada eller liv. Till en början kommer det vara små mutationer, men med tiden så kommer  mutationerna bli allt större och större. 
+Poängräkningen kommer baseras på hur länge man överlever. Överlever man 2 minuter får man 120 poäng. 
+
+4 DEADLINES  
+ 
+Vecka
+Kommentar
+45
+Planering
+46
+Fysikmotor
+47
+Spelarklass och spelarens funktioner
+48
+Fiender
+49
+Uppgraderingar
+50
+Grafik
+51
+Dokumentation
+
+
