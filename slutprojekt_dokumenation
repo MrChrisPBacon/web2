@@ -4,17 +4,34 @@ Veckoredovisning
 
 .Vecka
 Status
-43
-Skapade fysik motorn. En kub som kan röra sig och som kan känna av en kollision med andra kuber. Vid kollision så skrivs det i konsolen.
-45
+.43
+Skapade fysik motorn. En kub som kan röra sig och som kan känna av en kollision med andra kuber. Vid kollision så skrivs det i konsolen. En projektil som kan flyga över skärmen.
+.45
 Skapade en klass för spelare och fiende och lade till animationer till de båda. Skapade en klass för skott och lagt till en funktion för att kunna skjuta på fienden. 
-46
+.46
 Skapat en config-fil där man kan ändra stats för fienden, spelaren och spelet. 
-47
+.47
 Skapat en klass för menyer och börjat bygga en startmeny, uppgraderings meny och meny för när man dör. Lagt till flera fiender, en som kan skjuta, en som är snabb och en som är stark.
-48
-Configurerat fiender, spelaren och uppgraderingarna. 
+.48
+Configurerat fiender, spelaren och uppgraderingarna samt lagt till ljudeffekter och samlat in feedback. 
 
+
+Utfört arbete
+
+Fysikmotorn
+Jag började med att skapa fysikmotorn. Fysikmotorn är ganska simpel och tillhandahåller kollision och projektiler. Projektilerna tar musens position och en startposition. Sedan beräknar den förhållandet mellan x och y positionen och multiplicerar det med hastigheten för att den ska flyga i rätt riktning. Kollisionerna kollar varje hörn på objekt ett mot varje hörn på objekt 2 för att kolla om de överlappar och kolliderar. Alla mina hitboxes i spelet är fyrkantiga för att skapa färre kalkylationer och därför optimera spelet. Ett undantag är granatens explosion som kollar om kollisionerna i en cirkel runt centrum för en bättre upplevelse.
+
+Spelare och Fienden
+Nästa steg var att skapa spelaren och fienderna. Kortfattat innehåller spelarnas klass följande: Liv, Hastighet, Skada, Position och Animation. Livet eller HP avgör hur mycket skada spelaren kan ta innan den dör. När spelaren tar skada beräknas skadan spelaren tar på fiendens skada och en resistans som spelaren har. Resistansen går att uppgradera senare. Hastigheten är hur många pixlar spelaren rör sig per tick. Skadan spelaren gör är hur mycket skada varje skott gör. Positionen består av x, y bredd och höjd. När spelaren går så ändras först en diffx och diffy. Detta är för att lätt kunna hålla ordning på om spelaren är i rörelse vilket underlättar animeringen. Nästa är animeringen, animerings hastigheten och hur många bilder per animation. Fienden bygger på samma princip som spelaren, men den har färre animationer eftersom fienden alltid är i rörelse. Det som skiljer spelaren och fienden är att spelaren har en funktion för att skapa projektiler som kan skada fienden. Fienden har tre subklasser med olika stats för att det ska finnas olika fiender. De olika fienderna skapas en bit in i spelet för att göra det gradvis svårare. 
+
+Config
+Nästa steg vara att skapa en config-fil. Detta för att lätt kunna ändra alla stats på spelaren, spelet och alla fienderna utan att behöva hoppa mellan massa filer. Det som inte finns med i config-filen är animationerna eftersom att det är smidigare att ha dem separat i varje klass istället. 
+
+Menyer
+Därefter skapade jag en template för menyn. Templaten består av en bakgrund och knappar som man kan bygga ihop själv. Varje separat meny är en subklass till meny-klassen. Jag skapade även en ny klass för knappar som inte hör samman med en meny såsom startknappen. 
+
+Slutgiltig konfiguration och ljudeffekter
+Det sista steget var att ställa in alla stats så spelet blir någorlunda balanserat. Det mest optimala är att göra en fältundersökning för att få feedback, vilket jag gjort, men inte tillräckligt storskalig. Tack vare feedbacken lade jag till ljudeffekter, granater och power ups. 
 
 Utvärdering av din projektplanering 
 Min planering fungerade ganska bra. Det första steget var att skapa fysik motorn, vilket är kärnan till spelet. Därefter skapade jag en spelare och en fiende. Detta var för att kunna testa fysikmotorn och kollisionerna. Eftersom att standard fienden är väldigt simpel. Den ska bara följa spelaren så skrev jag klart koden till den innan spelaren. Därefter lade jag till funktionen för att kunna skjuta eftersom att det också är en viktig del av testandet till fysikmotorn. När det var klart lade jag till animationerna för fienden och spelaren. Detta eftersom det satte prägel på hur resten av spelet byggs upp. 
@@ -34,9 +51,9 @@ Person (2)
 Göra så att fienden inte kan skapas i spelaren 
 Highscore eller någon form av global poängräkning.
 
-Granater och energidryck tyckte jag var en bra idé eftersom att det är något som kan hjälpa en ur kniviga situationer. Därför valde jag att lägga till båda funktionerna. Highscore är inget jag kan göra i den här kursen, men det är något jag kan lägga till i nästa kurs vilket är planen för tillfället. Att fienden inte ska kunna skapas i spelaren är något jag överväger att lägga till. Mycket av spelet är slumpat, vart fienden skapas och hur många av varje sorts fiende som skapas. Genom att låta fiender skapas i spelaren så blir spelet mer om tur än om skicklighet. Jag ser både för- och nackdelar med ett turbaserat spel. För att få ett svar vad andra tycker blir det till att göra en undersökning och utgå från det. Jag planerar att göra det i samband med high-score systemet eftersom att jag då måste ha ett väl fungerande system där alla ska ha samma förutsättningar. 
+Granater och energidryck tyckte jag var en bra idé eftersom att det är något som kan hjälpa en ur kniviga situationer. Därför valde jag att lägga till båda funktionerna. Samma med ljudeffekter. Lade även till lite bakgrundsmusik för att liva upp stämningen. Highscore är inget jag kan göra i den här kursen, men det är något jag kan lägga till i nästa kurs vilket är planen för tillfället. Att fienden inte ska kunna skapas i spelaren är något jag överväger att lägga till. Mycket av spelet är slumpat, vart fienden skapas och hur många av varje sorts fiende som skapas. Genom att låta fiender skapas i spelaren så blir spelet mer om tur än om skicklighet. Jag ser både för- och nackdelar med ett turbaserat spel. För att få ett svar vad andra tycker blir det till att göra en undersökning och utgå från det. Jag planerar att göra det i samband med high-score systemet eftersom att jag då måste ha ett väl fungerande system där alla ska ha samma förutsättningar. 
 Upphovsrätt och GDPR 
-Bilderna jag använder mig av kommer från itch.io som är en webbsida för bland annat tillbehör som ljud och grafik till spel. Jag har valt att använda gratis bilder som får användas i kommersiellt bruk. De generella kraven från skaparna är att man lämnar cred till dem, vilket jag har gjort. 
+Bilderna jag använder mig av kommer från itch.io som är en webbsida för bland annat tillbehör som ljud och grafik till spel. Jag har valt att använda gratis bilder som får användas i kommersiellt bruk. De generella kraven från skaparna är att man lämnar cred till dem, vilket jag har gjort. Från spelet finns en länk till github med credits. Musiken är tagen från samma källa och ljudeffekterna är från Minecraft. Minecraft tillåter en att använda ljud så länge man lämnar credits.
 
 Koden 
 Nästan hela webbsidan bygger på grafik elementet canvas. Canvas initialiseras i HTML och sen skrivs resten av koden i Javascript. CSS:n som används är bara till för att canvas elementet ska täcka skärmen. Spelet bygger på en loop som kör alla funktioner. Hastigheten på loopen bestämmer hastigheten i spelet eller FPS. Antalet FPS bestäms genom .now() plus 1000/60 millisekunder. När det gått 1000/60 millisekunder från senaste framen så går spelet till nästa iteration i loopen. Detta borde i teorin vid optimala förhållanden resultera att spelet körs i 60 fps.
@@ -67,9 +84,12 @@ restartGame() återställer stats till en kopia av stats som skapades vid starte
 
 Animationer
 Animationerna bygger på att varje animerat objekt byter bild vid ett intervall. För spelaren, fienderna och mynten så består varje bild av fyra bilder. Efter varje 5 ticks eller 60/5 sekunder byts bilden till nästa och objektet upplevs vara animerat. Bilden byts genom att koordinaterna av den visade bilden flyttas. Explosionen till granaten innehåller fler frames så därför är varje frame en separat bild. Istället för att ändra koordinaterna i bilden som visas ändras istället filvägen till nästa bild.
+
 spawnEnemy()
 spawnEnemy() skapar en ny fiende vid vald koordinat. spawnEnemy() slumpar ett värde mellan 0 till hundra, beroende på vilket värde som slumpas fram så kommer olika fiender skapas. I stats.js kan man välja hur stor procentuell chans det är för en viss typ av fiende att skapas och det kalkyleras genom följande.  Om random är mindre än F1.spawnChanse skapas en F1. Om random är mer än F1.spawnChanse men mindre än F2.spawnChanse skapas F2. Annars skapas F3. 
+
 Eventuella guider eller tutorials 
 Den guide jag använde mig av var W3schools exempel på Canvas kod. Detta eftersom att canvas är ett nytt sätt att skapa grafik på för mig, men jag har jobbat med liknande spelgrafik tidigare och principen är densamma. Jag har även fått hjälp från en klasskamrat Simon Fikse med gameloopen och principen bakom animationerna eftersom han också bygger ett spel. 
+
 Betyg 
 Jag anser mig uppnå ett B eftersom att mitt spel är välutvecklat och följer en någorlunda industristandard. Dock faller min dokumentation och planering vilket gör att jag endast landar på ett B istället för ett A. Förvisso så har min kod flera utvecklingsområden, men jag tycker att spelet ger ett gott helhetsintryck. Koden är väl strukturerad, men det finns förbättringspotential med namngivandet. Stats.js är mer som en config-fil eller en datafil. All namngivning är inte heller enhetlig där en del funktioner skrivs med _ istället för stor bokstav. Man kan även tycka att det borde finnas fler funktioner, men då är frågan vart man ska dra en gräns? Olika vapen? Multiplayer? En öppen värld där man kan bygga saker? I slutändan, med den givna tidsramen är jag nöjd med projektet. 
